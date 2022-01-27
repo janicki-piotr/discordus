@@ -1,2 +1,13 @@
-greeting:
-  message: "hello"
+app:
+  discord:
+    token: ""
+    prefix: "!"
+  video:
+    cache:
+      path: "/videos"
+      ttl: "1800"
+      cron: "* */1 * * * ?"
+  youtube:
+    download:
+      quality: "480p"
+      overwrite: true
