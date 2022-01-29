@@ -2,6 +2,7 @@ app:
   discord:
     token: ""
     prefix: "!"
+    max-attachment-size: 8388608
   video:
     cache:
       path: "/videos"
@@ -11,3 +12,6 @@ app:
     download:
       quality: "480p"
       overwrite: true
+quarkus:
+  banner:
+    enabled: false
