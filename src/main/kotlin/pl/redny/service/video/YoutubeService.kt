@@ -14,12 +14,12 @@ class YoutubeService(
     val youtubeClient: YoutubeClient
 ) : VideoDownloader {
     private final val youtubeUrlPattern =
-        "^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?\$"
+        "^(?:https?:)?\\/\\/?(?:www|m)\\.?(?:youtube\\.com|youtu.be)\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?([\\w\\-]+)(\\S+)?\$"
 
     private final val youtubeUrlRegex = youtubeUrlPattern.toRegex()
 
     override fun download(source: String, destination: String): Result<File> {
-        val videoId = youtubeUrlRegex.matchEntire(source)?.groupValues?.get(5)
+        val videoId = youtubeUrlRegex.matchEntire(source)?.groupValues?.get(1)
         if (videoId.isNullOrBlank()) {
             return Result.failure(YoutubeException("Cannot parse videoId for url $source"))
         }

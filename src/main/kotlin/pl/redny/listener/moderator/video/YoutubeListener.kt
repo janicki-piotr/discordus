@@ -36,13 +36,12 @@ class YoutubeListener(
     }
 
     private fun uploadFile(message: String, file: File, channel: MessageChannel): Result<Unit> {
-        if (message.isEmpty()) {
-            return Result.failure(DiscordException("Message cannot be empty."))
-        }
-        if (file.length() > maxAttachmentSize) {
-            return Result.failure(DiscordException("Attachment exceeded max size "))
-        }
-        return Result.runCatching { channel.sendMessage(message).addFile(file).queue() }
+        return if (message.isEmpty()) {
+            Result.failure(DiscordException("Message cannot be empty."))
+        } else if (file.length() > maxAttachmentSize) {
+            Result.failure(DiscordException("Attachment exceeded max size "))
+        } else
+            Result.runCatching { channel.sendMessage(message).addFile(file).queue() }
     }
 
     private fun handleDownloading(url: String): Result<File> = youtubeService.download(url, destination)
