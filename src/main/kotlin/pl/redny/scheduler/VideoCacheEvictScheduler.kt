@@ -21,5 +21,4 @@ class VideoCacheEvictScheduler(
             (dateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() - it.lastModified() >= ttl * 1000)
         }?.forEach { it.delete() }
     }
-
 }

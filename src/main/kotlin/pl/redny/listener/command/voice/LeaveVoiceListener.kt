@@ -19,10 +19,10 @@ class LeaveVoiceListener(private val jda: JDA, prefixSupplier: PrefixSupplier) :
     private fun handleCommand(it: MessageReceivedEvent) = mono {
         val connectedVoice = it.guild.selfMember.voiceState?.channel
         if (connectedVoice == null) {
-            it.channel.sendMessage("I am not connected to a voice channel!").queue();
+            it.channel.sendMessage("I am not connected to a voice channel!").queue()
         } else {
             it.guild.audioManager.closeAudioConnection()
-            it.channel.sendMessage("Disconnected from the voice channel!").queue();
+            it.channel.sendMessage("Disconnected from the voice channel!").queue()
         }
     }
 

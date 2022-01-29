@@ -2,7 +2,6 @@ package pl.redny.service.video
 
 import ws.schild.jave.Encoder
 import ws.schild.jave.MultimediaObject
-import ws.schild.jave.encode.AudioAttributes
 import ws.schild.jave.encode.EncodingAttributes
 import ws.schild.jave.encode.VideoAttributes
 import java.io.File

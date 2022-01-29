@@ -37,3 +37,4 @@ class DiscordConfiguration {
         eventHandlers.forEach { it.register() }
     }
 }
+
