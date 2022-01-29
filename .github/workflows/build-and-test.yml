@@ -30,7 +30,7 @@ jobs:
           PUBLISH_USERNAME: ${{ secrets.REPOSITORY_USERNAME }}
           PUBLISH_PASSWORD: ${{ secrets.REPOSITORY_TOKEN }}
       - name: Test with Gradle
-        run: ./gradlew test
+        run: ./gradlew test --stacktrace
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
