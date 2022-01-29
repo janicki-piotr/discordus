@@ -6,7 +6,8 @@ import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.MessageChannel
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import org.eclipse.microprofile.config.inject.ConfigProperty
+import pl.redny.config.mapping.DiscordConfigMapping
+import pl.redny.config.mapping.VideoConfigMapping
 import pl.redny.listener.DiscordException
 import pl.redny.listener.EventListener
 import pl.redny.service.video.VideoEncoder
@@ -17,11 +18,11 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class YoutubeListener(
-    @ConfigProperty(name = "app.video.cache.path", defaultValue = "/videos") val destination: String,
-    @ConfigProperty(name = "max-attachment-size", defaultValue = "8388608") val maxAttachmentSize: Long,
-    val jda: JDA,
-    val youtubeService: YoutubeService,
-    val videoEncoder: VideoEncoder
+    private val discordConfigMapping: DiscordConfigMapping,
+    private val videoConfigMapping: VideoConfigMapping,
+    private val jda: JDA,
+    private val youtubeService: YoutubeService,
+    private val videoEncoder: VideoEncoder
 ) : EventListener, Moderator {
     override fun register() {
         jda.on<MessageReceivedEvent>().filter { !it.author.isBot }
@@ -38,13 +39,13 @@ class YoutubeListener(
     private fun uploadFile(message: String, file: File, channel: MessageChannel): Result<Unit> {
         return if (message.isEmpty()) {
             Result.failure(DiscordException("Message cannot be empty."))
-        } else if (file.length() > maxAttachmentSize) {
+        } else if (file.length() > discordConfigMapping.maxAttachmentSize()) {
             Result.failure(DiscordException("Attachment exceeded max size "))
-        } else
-            Result.runCatching { channel.sendMessage(message).addFile(file).queue() }
+        } else Result.runCatching { channel.sendMessage(message).addFile(file).queue() }
     }
 
-    private fun handleDownloading(url: String): Result<File> = youtubeService.download(url, destination)
+    private fun handleDownloading(url: String): Result<File> =
+        youtubeService.download(url, videoConfigMapping.cache().path())
 
     private fun handleEncoding(file: File): Result<File> = videoEncoder.encode(file)
 

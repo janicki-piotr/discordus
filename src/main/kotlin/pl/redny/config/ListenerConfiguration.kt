@@ -16,16 +16,16 @@ import javax.enterprise.inject.Produces
 class ListenerConfiguration {
     @Produces
     fun leaveVoiceListener(jda: JDA, prefixSupplier: PrefixSupplier): LeaveVoiceListener =
-        LeaveVoiceListener(jda, prefixSupplier)
+        LeaveVoiceListener(prefixSupplier, jda)
 
     @Produces
     fun joinVoiceListener(jda: JDA, prefixSupplier: PrefixSupplier): JoinVoiceListener =
-        JoinVoiceListener(jda, prefixSupplier)
+        JoinVoiceListener(prefixSupplier, jda)
 
     @Produces
-    fun pongListener(jda: JDA, prefixSupplier: PrefixSupplier): PongListener = PongListener(jda, prefixSupplier)
+    fun pongListener(jda: JDA, prefixSupplier: PrefixSupplier): PongListener = PongListener(prefixSupplier, jda)
 
     @Produces
     fun helpListener(jda: JDA, prefixSupplier: PrefixSupplier, commands: Instance<Command>): HelpListener =
-        HelpListener(jda, commands, prefixSupplier)
+        HelpListener(prefixSupplier, jda, commands)
 }

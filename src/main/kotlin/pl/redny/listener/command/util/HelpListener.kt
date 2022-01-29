@@ -10,11 +10,10 @@ import pl.redny.listener.command.Command
 import pl.redny.listener.prefix.PrefixSupplier
 import javax.enterprise.inject.Instance
 
-class HelpListener(private val jda: JDA, private val commands: Instance<Command>, prefixSupplier: PrefixSupplier) :
+
+class HelpListener(prefixSupplier: PrefixSupplier, private val jda: JDA, private val commands: Instance<Command>) :
     EventListener, Command(prefixSupplier) {
-
     private val helpPattern = "!help (.+)"
-
     private val helpPatternRegex = helpPattern.toRegex()
 
     override fun register() {

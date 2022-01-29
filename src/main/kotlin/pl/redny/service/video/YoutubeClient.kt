@@ -10,6 +10,7 @@ import com.github.kiulian.downloader.model.videos.formats.Format
 import java.io.File
 import javax.enterprise.context.ApplicationScoped
 
+
 @ApplicationScoped
 class YoutubeClient(val youtubeDownloader: YoutubeDownloader) {
     fun getVideoInfo(videoId: String): Result<VideoInfo> {

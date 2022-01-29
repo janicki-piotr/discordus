@@ -3,6 +3,7 @@ package pl.redny.listener.command
 import net.dv8tion.jda.api.Permission
 import pl.redny.listener.prefix.PrefixSupplier
 
+
 abstract class Command(private val prefixSupplier: PrefixSupplier) {
     fun getPrefix(): String {
         return prefixSupplier.getPrefix()

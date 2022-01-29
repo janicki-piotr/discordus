@@ -2,6 +2,7 @@ package pl.redny.common.date
 
 import java.time.LocalDateTime
 
+
 interface DateTime {
     companion object {
         const val FORMATTER_DD_MM_YYYY = "dd/MM/yyyy"

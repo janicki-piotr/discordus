@@ -1,15 +1,12 @@
 package pl.redny.listener.prefix
 
-import org.eclipse.microprofile.config.inject.ConfigProperty
+import pl.redny.config.mapping.DiscordConfigMapping
 import javax.enterprise.context.ApplicationScoped
 
+
 @ApplicationScoped
-class ConfigurationPrefixSupplier(
-    @ConfigProperty(
-        name = "app.discord.prefix", defaultValue = "!"
-    ) val configPrefix: String
-) : PrefixSupplier {
+class ConfigurationPrefixSupplier(private val discordConfigMapping: DiscordConfigMapping) : PrefixSupplier {
     override fun getPrefix(): String {
-        return configPrefix
+        return discordConfigMapping.prefix()
     }
 }

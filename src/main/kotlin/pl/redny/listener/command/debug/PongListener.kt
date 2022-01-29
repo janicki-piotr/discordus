@@ -10,7 +10,8 @@ import pl.redny.listener.EventListener
 import pl.redny.listener.command.Command
 import pl.redny.listener.prefix.PrefixSupplier
 
-class PongListener(private val jda: JDA, prefixSupplier: PrefixSupplier) : EventListener, Command(prefixSupplier) {
+
+class PongListener(prefixSupplier: PrefixSupplier, private val jda: JDA) : EventListener, Command(prefixSupplier) {
     override fun register() {
         jda.on<MessageReceivedEvent>().filter { !it.author.isBot }
             .filter { it.message.contentRaw == (getPrefix() + getName()) }.flatMap(::handleCommand).subscribe()
