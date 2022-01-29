@@ -4,7 +4,6 @@ import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
 import pl.redny.config.mapping.DiscordConfigMapping
 import javax.inject.Inject
@@ -14,10 +13,10 @@ import javax.inject.Inject
 class ConfigurationPrefixSupplierTest {
 
     @Inject
-    private lateinit var configurationPrefixSupplier: ConfigurationPrefixSupplier
+    lateinit var configurationPrefixSupplier: ConfigurationPrefixSupplier
 
     @InjectMock
-    private lateinit var discordConfigMapping: DiscordConfigMapping
+    lateinit var discordConfigMapping: DiscordConfigMapping
 
     @Test
     fun `should respond ! prefix`() {
