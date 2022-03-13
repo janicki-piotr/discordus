@@ -64,7 +64,7 @@ dependencies {
 
     // Testing
     testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:0.3.0")
+    testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:1.0.1")
     testImplementation("io.rest-assured:rest-assured")
 }
 
