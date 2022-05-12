@@ -11,7 +11,7 @@ import pl.redny.config.mapping.VideoConfigMapping
 import pl.redny.listener.DiscordException
 import pl.redny.listener.EventListener
 import pl.redny.service.video.VideoEncoder
-import pl.redny.service.video.YoutubeService
+import pl.redny.service.video.youtube.YoutubeService
 import java.io.File
 import javax.enterprise.context.ApplicationScoped
 

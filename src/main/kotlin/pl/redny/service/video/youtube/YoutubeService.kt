@@ -1,16 +1,18 @@
-package pl.redny.service.video
+package pl.redny.service.video.youtube
 
 import com.github.kiulian.downloader.model.videos.VideoInfo
 import com.github.kiulian.downloader.model.videos.formats.Format
 import com.github.kiulian.downloader.model.videos.formats.VideoWithAudioFormat
 import pl.redny.config.mapping.YoutubeConfigMapping
+import pl.redny.service.video.VideoDownloader
+import pl.redny.service.video.VideoUploader
 import java.io.File
 import javax.enterprise.context.ApplicationScoped
 
 
 @ApplicationScoped
 class YoutubeService(val youtubeConfigMapping: YoutubeConfigMapping, val youtubeClient: YoutubeClient) :
-    VideoDownloader {
+    VideoDownloader, VideoUploader {
     private final val youtubeUrlPattern =
         "^(?:https?:)?\\/\\/?(?:www|m)\\.?(?:youtube\\.com|youtu.be)\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?([\\w\\-]+)(\\S+)?\$"
 
@@ -35,5 +37,9 @@ class YoutubeService(val youtubeConfigMapping: YoutubeConfigMapping, val youtube
     private fun getFormat(videoInfo: VideoInfo?): Format? {
         return videoInfo?.formats()?.filterIsInstance<VideoWithAudioFormat>()
             ?.sortedBy { it.qualityLabel() == youtubeConfigMapping.download().quality() }?.last()
+    }
+
+    override fun upload(file: File, parameters: Map<String, String>): Result<File> {
+        TODO("Not yet implemented")
     }
 }

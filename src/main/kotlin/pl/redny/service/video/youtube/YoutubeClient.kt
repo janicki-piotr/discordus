@@ -1,4 +1,4 @@
-package pl.redny.service.video
+package pl.redny.service.video.youtube
 
 import com.github.kiulian.downloader.YoutubeDownloader
 import com.github.kiulian.downloader.downloader.request.RequestVideoFileDownload

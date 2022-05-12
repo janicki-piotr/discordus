@@ -57,6 +57,9 @@ dependencies {
 
     // Youtube
     implementation("com.github.sealedtx:java-youtube-downloader:3.0.2")
+    implementation ("com.google.api-client:google-api-client:1.33.2")
+    implementation ("com.google.oauth-client:google-oauth-client-jetty:1.33.1")
+    implementation ("com.google.apis:google-api-services-youtube:v3-rev20220227-1.32.1")
 
     // Video
     implementation("ws.schild:jave-all-deps:3.2.0")
